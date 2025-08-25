@@ -11,6 +11,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "start": "vite",
     "dev": "vite",
     "build": "vite build  && cd dist && cp index.html 404.html",
     "serve": "vite preview",
@@ -54,7 +55,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
-    "firebase": "^8.4.3",
+    "firebase": "^9.23.0",
     "formik": "^2.2.6",
     "history": "^4.10.0",
     "moment": "^2.29.1",

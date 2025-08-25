@@ -1,16 +1,16 @@
-import app from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
-import "firebase/storage";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import 'firebase/compat/storage';
 import firebaseConfig from "./config";
 
 class Firebase {
   constructor() {
-    app.initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfig);
 
-    this.storage = app.storage();
-    this.db = app.firestore();
-    this.auth = app.auth();
+    this.storage = firebase.storage();
+    this.db = firebase.firestore();
+    this.auth = firebase.auth();
   }
 
   // AUTH ACTIONS ------------
@@ -22,13 +22,13 @@ class Firebase {
     this.auth.signInWithEmailAndPassword(email, password);
 
   signInWithGoogle = () =>
-    this.auth.signInWithPopup(new app.auth.GoogleAuthProvider());
+    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
 
   signInWithFacebook = () =>
-    this.auth.signInWithPopup(new app.auth.FacebookAuthProvider());
+    this.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
 
   signInWithGithub = () =>
-    this.auth.signInWithPopup(new app.auth.GithubAuthProvider());
+    this.auth.signInWithPopup(new firebase.auth.GithubAuthProvider());
 
   signOut = () => this.auth.signOut();
 
@@ -57,7 +57,7 @@ class Firebase {
 
   reauthenticate = (currentPassword) => {
     const user = this.auth.currentUser;
-    const cred = app.auth.EmailAuthProvider.credential(
+    const cred = firebase.auth.EmailAuthProvider.credential(
       user.email,
       currentPassword
     );
@@ -98,7 +98,7 @@ class Firebase {
     this.db.collection("users").doc(userId).update({ basket: items });
 
   setAuthPersistence = () =>
-    this.auth.setPersistence(app.auth.Auth.Persistence.LOCAL);
+    this.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
   // // PRODUCT ACTIONS --------------
 
@@ -113,7 +113,7 @@ class Firebase {
           try {
             const query = this.db
               .collection("products")
-              .orderBy(app.firestore.FieldPath.documentId())
+              .orderBy(firebase.firestore.FieldPath.documentId())
               .startAfter(lastRefKey)
               .limit(12);
 
@@ -139,7 +139,7 @@ class Firebase {
             const total = totalQuery.docs.length;
             const query = this.db
               .collection("products")
-              .orderBy(app.firestore.FieldPath.documentId())
+              .orderBy(firebase.firestore.FieldPath.documentId())
               .limit(12);
             const snapshot = await query.get();
 

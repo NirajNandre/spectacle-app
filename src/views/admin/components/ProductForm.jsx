@@ -17,7 +17,11 @@ const brandOptions = [
   { value: 'Salt Maalat', label: 'Salt Maalat' },
   { value: 'Betsin Maalat', label: 'Betsin Maalat' },
   { value: 'Sexbomb', label: 'Sexbomb' },
-  { value: 'Black Kibal', label: 'Black Kibal' }
+  { value: 'Black Kibal', label: 'Black Kibal' },
+  {value: 'Gago', label: 'Gago' },
+  {value: 'Rayban', label: 'Rayban' },
+  {value: 'Oakley', label: 'Oakley' },
+  {value:'vincent chase', label: 'vincent chase' }
 ];
 
 const FormSchema = Yup.object().shape({
